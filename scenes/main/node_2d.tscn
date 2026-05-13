@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://c2cwvun14uncm"]
+
+[ext_resource type="Script" uid="uid://deq4mbkp6op81" path="res://scripts/node_2d.gd" id="1_iksdh"]
+[ext_resource type="Script" uid="uid://ctyxt85fs8fub" path="res://scripts/camera_future.gd" id="2_a3fm7"]
+[ext_resource type="PackedScene" uid="uid://buwl7ctigen4k" path="res://scenes/main/fase_0.tscn" id="2_iksdh"]
+[ext_resource type="Script" uid="uid://x8j7tyvi0m0x" path="res://scripts/camera_past.gd" id="3_lqrg5"]
+[ext_resource type="Script" uid="uid://b4hulfbnyfcrg" path="res://scripts/subview_port.gd" id="3_whxbp"]
+
+[node name="Node2D" type="Node2D" unique_id=599204070]
+script = ExtResource("1_iksdh")
+
+[node name="Fase1" parent="." unique_id=1656115048 instance=ExtResource("2_iksdh")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=69204092]
+
+[node name="UpView" type="SubViewportContainer" parent="CanvasLayer" unique_id=1125745626]
+offset_right = 1920.0
+offset_bottom = 324.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubviewPort" type="SubViewport" parent="CanvasLayer/UpView" unique_id=91738690]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 324)
+render_target_update_mode = 4
+script = ExtResource("3_whxbp")
+
+[node name="CameraFuture" type="Camera2D" parent="CanvasLayer/UpView/SubviewPort" unique_id=281908476]
+script = ExtResource("2_a3fm7")
+
+[node name="DownView" type="SubViewportContainer" parent="CanvasLayer" unique_id=170027752]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -324.0
+offset_right = 1920.0
+grow_vertical = 0
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubviewPort" type="SubViewport" parent="CanvasLayer/DownView" unique_id=2044693647]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 324)
+render_target_update_mode = 4
+
+[node name="CameraPast" type="Camera2D" parent="CanvasLayer/DownView/SubviewPort" unique_id=898185287]
+script = ExtResource("3_lqrg5")

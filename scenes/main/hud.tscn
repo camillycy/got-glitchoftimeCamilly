@@ -1,0 +1,280 @@
+[gd_scene format=3 uid="uid://ctsqjovfw5ufg"]
+
+[ext_resource type="Script" uid="uid://dd288l4xo0ewj" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="AudioStream" uid="uid://cs771oq0p7657" path="res://sounds/SoundEcho.ogg" id="2_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://010l50xppvt6" path="res://assets/SoundOff.png" id="3_047uy"]
+[ext_resource type="Texture2D" uid="uid://cfjy07wahis7f" path="res://assets/Sound.png" id="4_5pdws"]
+[ext_resource type="AudioStream" uid="uid://c8tv8wi511p1b" path="res://sounds/SoundPlay2.ogg" id="5_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://bg75lrdosx5h5" path="res://assets/ResetButton.png" id="6_047uy"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ahhtf"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_oo0fn"]
+events = [SubResource("InputEventKey_ahhtf")]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ahhtf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i1j5"]
+bg_color = Color(0.5294118, 0.5294118, 0.5294118, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="GDScript" id="GDScript_ahhtf"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uo2fv"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_047uy"]
+bg_color = Color(1, 0.6, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pdws"]
+bg_color = Color(0.2, 0.6, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd3ao"]
+bg_color = Color(0.6, 0.2, 1, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=1593445996]
+script = ExtResource("1_ahhtf")
+
+[node name="StartButton" type="Button" parent="." unique_id=817518267]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_oo0fn")
+flat = true
+
+[node name="EchoIndicator" type="TextureRect" parent="." unique_id=731267553]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 288.0
+offset_top = 16.0
+offset_right = 338.0
+offset_bottom = 66.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("CompressedTexture2D_ahhtf")
+expand_mode = 1
+
+[node name="SoundEcho" type="AudioStreamPlayer2D" parent="EchoIndicator" unique_id=1231793394]
+stream = ExtResource("2_uo2fv")
+volume_db = -15.0
+
+[node name="InstabilityBar" type="ProgressBar" parent="." unique_id=1634759775]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = 16.0
+offset_right = 206.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/background = SubResource("StyleBoxFlat_0i1j5")
+value = 100.0
+show_percentage = false
+metadata/_edit_group_ = true
+
+[node name="InstabilityLabel" type="Label" parent="InstabilityBar" unique_id=2041210207]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.0
+offset_top = 6.0
+offset_right = 115.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "Instabilidade: 0%"
+script = SubResource("GDScript_ahhtf")
+
+[node name="SoundOff" type="Button" parent="." unique_id=841322734]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 244.0
+offset_top = 16.0
+offset_right = 294.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-106, 59)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+icon = ExtResource("3_047uy")
+flat = true
+expand_icon = true
+
+[node name="SoundOn" type="Button" parent="." unique_id=629839199]
+visible = false
+offset_left = 820.0
+offset_top = 340.0
+offset_right = 870.0
+offset_bottom = 390.0
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+icon = ExtResource("4_5pdws")
+flat = true
+expand_icon = true
+
+[node name="SoundPlay" type="AudioStreamPlayer2D" parent="SoundOn" unique_id=638543699]
+stream = ExtResource("5_uo2fv")
+volume_db = 8.0
+
+[node name="ResetButton" type="Button" parent="." unique_id=112898696]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 324.0
+offset_top = 16.0
+offset_right = 374.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+icon = ExtResource("6_047uy")
+flat = true
+autowrap_trim_flags = 192
+expand_icon = true
+
+[node name="PlayerPastUI" type="VBoxContainer" parent="." unique_id=1829675750]
+offset_left = 3.0
+offset_top = 424.0
+offset_right = 155.0
+offset_bottom = 501.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="NameLabel" type="Label" parent="PlayerPastUI" unique_id=280153748]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Guardião"
+
+[node name="LifeBar" type="ProgressBar" parent="PlayerPastUI" unique_id=918325532]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_uo2fv")
+value = 100.0
+
+[node name="EnergyBar" type="ProgressBar" parent="PlayerPastUI" unique_id=381635476]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_047uy")
+value = 100.0
+
+[node name="PlayerFutureUI" type="VBoxContainer" parent="." unique_id=2145118115]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 153.0
+offset_bottom = 82.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="NameLabel" type="Label" parent="PlayerFutureUI" unique_id=1128020387]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Cientista"
+horizontal_alignment = 2
+autowrap_trim_flags = 0
+
+[node name="EnergyBar" type="ProgressBar" parent="PlayerFutureUI" unique_id=1461404277]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5pdws")
+value = 100.0
+
+[node name="StabilityBar" type="ProgressBar" parent="PlayerFutureUI" unique_id=1456464382]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hd3ao")
+value = 100.0
+
+[node name="PastInventory" type="VBoxContainer" parent="." unique_id=1322354031]
+offset_left = 167.0
+offset_top = 433.0
+offset_right = 332.0
+offset_bottom = 509.0
+metadata/_edit_group_ = true
+
+[node name="GridContainer" type="GridContainer" parent="PastInventory" unique_id=498771868]
+layout_mode = 2
+columns = 3
+
+[node name="FutureInventory" type="VBoxContainer" parent="." unique_id=1752909935]
+offset_left = 158.0
+offset_top = 3.0
+offset_right = 286.0
+offset_bottom = 86.0
+localize_numeral_system = false
+metadata/_edit_group_ = true
+
+[node name="GridContainer" type="GridContainer" parent="FutureInventory" unique_id=1695352310]
+layout_mode = 2
+columns = 3
+
+[node name="ScoreUI" type="VBoxContainer" parent="." unique_id=458916480]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.093
+offset_left = 998.0
+offset_top = 1.0
+offset_right = 1106.416
+offset_bottom = 17.736
+metadata/_edit_group_ = true
+
+[node name="TotalLabel" type="Label" parent="ScoreUI" unique_id=799232282]
+layout_mode = 2
+text = "TOTAL: 0"
+
+[node name="StabilityLabel" type="Label" parent="ScoreUI" unique_id=847866492]
+layout_mode = 2
+text = "ESTABILIDADE: 0"
+
+[node name="ChaosLabel" type="Label" parent="ScoreUI" unique_id=2065906120]
+layout_mode = 2
+text = "CAOS: 0"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="SoundOff" to="." method="_on_sound_off_pressed"]
+[connection signal="pressed" from="SoundOn" to="." method="_on_sound_on_pressed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

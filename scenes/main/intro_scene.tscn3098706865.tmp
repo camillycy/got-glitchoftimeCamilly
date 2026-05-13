@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://d1tve3bl6031q"]
+
+[ext_resource type="Script" uid="uid://c5fjuofqjoxjd" path="res://scenes/main/intro_scene.gd" id="1_7iwoo"]
+[ext_resource type="Texture2D" uid="uid://bxt44yc5u8j71" path="res://assets/laboratorio.png" id="1_gqxiv"]
+[ext_resource type="Texture2D" uid="uid://er1a4jj650ir" path="res://assets/Idle-cientista-Sheet.png" id="2_2c5go"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iwoo"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at1xl"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r1gu"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi53s"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6s4u"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhjqy"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq0eq"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgind"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en8cd"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r6tl"]
+atlas = ExtResource("2_2c5go")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7iwoo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iwoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_at1xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r1gu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi53s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6s4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhjqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq0eq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgind")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en8cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5r6tl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="root2" type="Node2D" unique_id=67940125]
+script = ExtResource("1_7iwoo")
+
+[node name="IntroLab" type="Node2D" parent="." unique_id=473898406]
+
+[node name="FutureWorld" type="Node2D" parent="IntroLab" unique_id=919899494]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="IntroLab/FutureWorld" unique_id=125379065]
+position = Vector2(623.31714, 405.70026)
+scale = Vector2(0.7394794, 0.65851426)
+
+[node name="Scientist" type="AnimatedSprite2D" parent="IntroLab/FutureWorld/CharacterBody2D" unique_id=1455960347]
+z_index = 10
+texture_filter = 1
+position = Vector2(87.47089, 129.53363)
+scale = Vector2(4.2240953, 4.9387927)
+sprite_frames = SubResource("SpriteFrames_7iwoo")
+animation = &"idle"
+offset = Vector2(-22.293335, 1.15942)
+
+[node name="LabBackground" type="Sprite2D" parent="IntroLab/FutureWorld" unique_id=405904189]
+z_index = -10
+position = Vector2(575, 336.00003)
+scale = Vector2(0.7519531, 0.64160156)
+texture = ExtResource("1_gqxiv")
+
+[node name="Terminal" type="Sprite2D" parent="IntroLab/FutureWorld" unique_id=2011807925]
+z_index = 8
+
+[node name="TerminalScreen" type="Sprite2D" parent="IntroLab/FutureWorld" unique_id=1893148446]
+modulate = Color(0, 0, 0, 1)
+z_index = 9
+
+[node name="TerminalGlow" type="PointLight2D" parent="IntroLab/FutureWorld" unique_id=326791688]
+color = Color(0, 0, 0, 1)
+energy = 0.8
+
+[node name="LabParticles" type="CPUParticles2D" parent="IntroLab/FutureWorld" unique_id=1596161161]
+z_index = 20
+amount = 24
+lifetime = 2.5
+
+[node name="FutureGlitch" type="Sprite2D" parent="IntroLab/FutureWorld" unique_id=36747125]
+modulate = Color(0, 0, 0, 1)
+z_index = 20
+
+[node name="GuardianScene" type="Node2D" parent="." unique_id=1082109456]
+visible = false
+position = Vector2(1195, 346)
+
+[node name="PastWorld" type="Node2D" parent="GuardianScene" unique_id=377276704]
+
+[node name="PastFloor" type="Sprite2D" parent="GuardianScene/PastWorld" unique_id=328313174]
+
+[node name="GuardianGlow" type="Sprite2D" parent="GuardianScene/PastWorld" unique_id=2100133482]
+modulate = Color(0, 0, 0, 1)
+z_index = 9
+
+[node name="Guardian" type="AnimatedSprite2D" parent="GuardianScene/PastWorld" unique_id=257558298]
+z_index = 10
+position = Vector2(291, 246)
+
+[node name="PastParticles" type="CPUParticles2D" parent="GuardianScene/PastWorld" unique_id=1360541804]
+z_index = 20
+position = Vector2(382, 251)
+amount = 32
+lifetime = 3.0
+
+[node name="PastGlitch" type="Sprite2D" parent="GuardianScene/PastWorld" unique_id=43242167]
+modulate = Color(0, 0, 0, 1)
+z_index = 20
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1339250641]
+
+[node name="BlackFade" type="ColorRect" parent="CanvasLayer" unique_id=626462485]
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WhiteFlash" type="ColorRect" parent="CanvasLayer" unique_id=1616072285]
+visible = false
+z_index = 11
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueText" type="Label" parent="CanvasLayer" unique_id=1139164884]
+z_index = 9
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+text = "Algo deu errado no experimento."
+
+[node name="WhiteSplitBottom" type="ColorRect" parent="CanvasLayer" unique_id=1121983182]
+visible = false
+offset_left = 21.0
+offset_top = 463.0
+offset_right = 1127.0
+offset_bottom = 649.0
+
+[node name="WhiteSplitTop" type="ColorRect" parent="CanvasLayer" unique_id=1287252784]
+visible = false
+offset_right = 1149.0
+offset_bottom = 204.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1503181648]
+position = Vector2(577, 321)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=761476595]
+
+[node name="Timer" type="Timer" parent="." unique_id=780167370]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1278475567]

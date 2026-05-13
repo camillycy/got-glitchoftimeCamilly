@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ceuidni7ouj24"]
+
+[ext_resource type="Script" uid="uid://b4hulfbnyfcrg" path="res://scripts/subview_port.gd" id="1_as6le"]
+[ext_resource type="Script" uid="uid://ctyxt85fs8fub" path="res://scripts/camera_future.gd" id="2_flsuc"]
+[ext_resource type="Script" uid="uid://d4g7an3gulax2" path="res://scripts/cientista.gd" id="4_5ffiq"]
+[ext_resource type="Texture2D" uid="uid://b4s1nciiw5bvp" path="res://atom.png" id="5_d06wi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_unfsl"]
+radius = 245.0
+height = 534.0
+
+[node name="Node2D" type="Node2D" unique_id=933005622]
+
+[node name="UpView" type="SubViewportContainer" parent="." unique_id=717382695]
+offset_right = 1159.0
+offset_bottom = 651.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubviewPort" type="SubViewport" parent="UpView" unique_id=1896352249]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1159, 651)
+render_target_update_mode = 4
+script = ExtResource("1_as6le")
+
+[node name="ColorRect" type="ColorRect" parent="UpView/SubviewPort" unique_id=243434485]
+offset_left = 146.0
+offset_top = 96.0
+offset_right = 1509.0
+offset_bottom = 886.0
+
+[node name="CameraFuture" type="Camera2D" parent="UpView/SubviewPort" unique_id=1157916299]
+script = ExtResource("2_flsuc")
+
+[node name="Cientista" type="CharacterBody2D" parent="UpView/SubviewPort" unique_id=1563696124]
+position = Vector2(144, 234)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("4_5ffiq")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="UpView/SubviewPort/Cientista" unique_id=1442200448]
+texture = ExtResource("5_d06wi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpView/SubviewPort/Cientista" unique_id=943062392]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_unfsl")

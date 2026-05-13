@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://caa83bxu82ijf"]
+
+[ext_resource type="Script" uid="uid://fgeg0iieqgg0" path="res://scripts/hud_inicial.gd" id="1_ja8xq"]
+[ext_resource type="Texture2D" uid="uid://010l50xppvt6" path="res://assets/SoundOff.png" id="3_e8nwm"]
+[ext_resource type="Texture2D" uid="uid://cfjy07wahis7f" path="res://assets/Sound.png" id="4_kl5eg"]
+[ext_resource type="AudioStream" uid="uid://c8tv8wi511p1b" path="res://sounds/SoundPlay2.ogg" id="5_pybbn"]
+[ext_resource type="Texture2D" uid="uid://dgxkv1b315s5p" path="res://assets/inicial-got.jpeg" id="7_n22f4"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ahhtf"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_oo0fn"]
+events = [SubResource("InputEventKey_ahhtf")]
+
+[node name="HUD" type="CanvasLayer" unique_id=1593445996]
+script = ExtResource("1_ja8xq")
+
+[node name="StartButton" type="Button" parent="." unique_id=817518267]
+anchors_preset = -1
+anchor_left = 0.31300002
+anchor_top = 0.758
+anchor_right = 0.623
+anchor_bottom = 1.0
+offset_left = 0.4239807
+offset_top = -0.184021
+offset_right = 0.30395508
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 129
+action_mode = 0
+button_mask = 5
+shortcut = SubResource("Shortcut_oo0fn")
+text = "START"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="StartButton" unique_id=55189226]
+layout_mode = 0
+offset_left = -340.5
+offset_top = -480.0
+offset_right = 808.5
+offset_bottom = 186.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("7_n22f4")
+expand_mode = 1
+
+[node name="SoundOff" type="Button" parent="." unique_id=1815679513]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 244.0
+offset_top = 16.0
+offset_right = 294.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-106, 59)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+icon = ExtResource("3_e8nwm")
+flat = true
+expand_icon = true
+
+[node name="SoundOn" type="Button" parent="." unique_id=678229500]
+visible = false
+offset_left = 820.0
+offset_top = 340.0
+offset_right = 870.0
+offset_bottom = 390.0
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+icon = ExtResource("4_kl5eg")
+flat = true
+expand_icon = true
+
+[node name="SoundPlay" type="AudioStreamPlayer2D" parent="SoundOn" unique_id=1049906382]
+stream = ExtResource("5_pybbn")
+volume_db = 8.0
+
+[node name="Fade" type="ColorRect" parent="." unique_id=1502741412]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
