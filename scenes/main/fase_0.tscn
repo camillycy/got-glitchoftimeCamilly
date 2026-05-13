@@ -749,6 +749,7 @@ position = Vector2(-431, -11)
 script = ExtResource("26_joe5u")
 
 [node name="ArvoreMorta" type="Sprite2D" parent="Control/DownView/SubViewportDown/PastWorld/Arvore" unique_id=134562332]
+visible = false
 material = SubResource("ShaderMaterial_l43dx")
 position = Vector2(2400, 130.962)
 scale = Vector2(1.0352178, 1.3484528)
