@@ -432,13 +432,13 @@ position = Vector2(15, 91)
 scale = Vector2(0.5, 0.5)
 
 [node name="FundoFuture2" type="Sprite2D" parent="Control/UpView/SubViewport/FutureWorld" unique_id=2046213792]
-position = Vector2(570.93744, 122.84376)
-scale = Vector2(0.59802073, 0.75370425)
+position = Vector2(596.99994, 111.843765)
+scale = Vector2(0.62430674, 0.78144705)
 texture = ExtResource("2_xw0qk")
 
 [node name="FundoFuture3" type="Sprite2D" parent="Control/UpView/SubViewport/FutureWorld" unique_id=1501829344]
-position = Vector2(1737.4375, 246)
-scale = Vector2(0.5924736, 1.074401)
+position = Vector2(1716.4375, 225)
+scale = Vector2(0.61365366, 1.1273645)
 texture = ExtResource("2_xw0qk")
 
 [node name="FundoFuture4" type="Sprite2D" parent="Control/UpView/SubViewport/FutureWorld" unique_id=930449705]
@@ -682,9 +682,9 @@ text = " "
 [node name="DownView" type="SubViewportContainer" parent="Control" unique_id=1513643040]
 layout_direction = 2
 layout_mode = 0
-offset_top = 400.0
+offset_top = 328.0
 offset_right = 3006.0
-offset_bottom = 869.0
+offset_bottom = 797.0
 size_flags_vertical = 3
 stretch = true
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blstef155raby"
-path="res://.godot/imported/answer_paper.png-cb22b478325746d8b9ab57738ad755bf.ctex"
+uid="uid://dyi1l4hlspa15"
+path="res://.godot/imported/answer_paper.png-fd5ed0f2ebe07d6b35b04bfc0ddbf915.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/fase1/answer_paper.png"
-dest_files=["res://.godot/imported/answer_paper.png-cb22b478325746d8b9ab57738ad755bf.ctex"]
+source_file="res://assets/answer_paper.png"
+dest_files=["res://.godot/imported/answer_paper.png-fd5ed0f2ebe07d6b35b04bfc0ddbf915.ctex"]
 
 [params]
 

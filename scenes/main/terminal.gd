@@ -2,25 +2,30 @@ extends Node2D
 
 var player_near = false
 
-@onready var puzzle = $"../WireMiniGame"
+@onready var puzzle = get_parent().get_node("WireMiniGame")
 
 signal puzzle_completed
 
 func _ready():
 	puzzle.puzzle_completed.connect(_on_puzzle_completed)
-
+	
+	print(puzzle)
 
 func _process(delta):
-
-	if player_near:
-		print("PERTO DO TERMINAL")
 
 	if Input.is_action_just_pressed("interact_cientista"):
 		print("APERTOU CTRL")
 
 	if player_near and Input.is_action_just_pressed("interact_cientista"):
-		print("ABRINDO PUZZLE")
 		puzzle.visible = true
+		print("ABRINDO PUZZLE")
+
+		puzzle.visible = true
+		puzzle.position = Vector2.ZERO
+		puzzle.z_index = 999
+
+		print(puzzle.visible)
+		print(puzzle.global_position)
 
 
 func _on_area_2d_body_entered(body):

@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://c7f2i4f8ox3en" path="res://scenes/main/terminal.gd" id="8_jklki"]
 [ext_resource type="Texture2D" uid="uid://dmqgf5b7c0q0o" path="res://assets/terminalbrokenasset.png" id="9_esxdw"]
 [ext_resource type="Texture2D" uid="uid://dx258pfb02hbb" path="res://assets/fase1guardiao3.png" id="10_5rai6"]
-[ext_resource type="Script" uid="uid://cordb2hkeinc0" path="res://scenes/fase1/pin_code.gd" id="11_jklki"]
+[ext_resource type="PackedScene" uid="uid://cewwmfundrrn1" path="res://scenes/fase1/pin_code.tscn" id="11_jklki"]
 [ext_resource type="Script" uid="uid://ddayit13ndy0v" path="res://scripts/guardiao.gd" id="11_s6lh8"]
 [ext_resource type="Texture2D" uid="uid://nj34iln3dt43" path="res://assets/IdleGuardião.png" id="12_euvu5"]
 [ext_resource type="Texture2D" uid="uid://dat1wqdka570t" path="res://assets/walk guardião.png" id="13_5rai6"]
@@ -433,10 +433,11 @@ texture = ExtResource("9_esxdw")
 position = Vector2(6, -22)
 shape = SubResource("RectangleShape2D_73lc0")
 
-[node name="WireMiniGame" type="Node2D" parent="Control/VBoxContainer/UpView/SubViewport/FutureWorld" unique_id=178933555]
-visible = false
-scale = Vector2(0.4, 0.4)
-script = ExtResource("11_jklki")
+[node name="WireMiniGame" parent="Control/VBoxContainer/UpView/SubViewport/FutureWorld" unique_id=1549836399 instance=ExtResource("11_jklki")]
+top_level = true
+z_index = 999
+position = Vector2(300, 150)
+scale = Vector2(0.5, 0.5)
 
 [node name="DownView" type="SubViewportContainer" parent="Control/VBoxContainer" unique_id=770732633]
 layout_direction = 2
