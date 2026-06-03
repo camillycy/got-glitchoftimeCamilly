@@ -11,19 +11,41 @@ var circles: Array[Circle] = []
 var correct_sequence = Line2D.new()
 var is_correct = false
 var correct_color = null
+var error_message = ""
 
+# LAYOUT
+var spacing = 85
+var radius = 24
+
+# posição das bolinhas
+var side_offset_x = 70
+var side_offset_y = 120
+
+<<<<<<< HEAD
 var show_hint = false
 
 var spacing = 150
 var radius = 36
 var side_offset = 100
+=======
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
 var currently_selected = null
 var default_color = Color.GREEN
 
 var main_line = Line2D.new()
+<<<<<<< HEAD
 
 var solved_color = Color.PURPLE
 
+=======
+var solved_color = Color.PURPLE
+
+var show_hint = false
+
+var answer_texture = preload(
+	"res://scenes/fase1/answer_paper.png"
+)
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
 
 func _ready() -> void:
 
@@ -37,22 +59,36 @@ func _ready() -> void:
 	# cria os círculos
 	for y in range(3):
 		for x in range(3):
+<<<<<<< HEAD
 			circles.append(
 				Circle.new(
 					Vector2(
 						x * spacing + side_offset,
 						y * spacing + side_offset
+=======
+
+			circles.append(
+				Circle.new(
+					Vector2(
+						x * spacing + side_offset_x,
+						y * spacing + side_offset_y
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
 					),
 					radius,
 					default_color
 				)
 			)
 
+<<<<<<< HEAD
 	# sequência correta do puzzle
+=======
+	# sequência correta
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
 	for i in [0, 1, 4, 2, 5, 8, 7, 3, 6]:
 		correct_sequence.add_point(circles[i].pos)
 
 	queue_redraw()
+<<<<<<< HEAD
 	print("PIN CODE RODANDO")
 	
 
@@ -80,6 +116,60 @@ func is_connection_valid(start: Vector2, end: Vector2) -> bool:
 		return false
 
 	for circle in circles:
+=======
+
+	print("PIN CODE RODANDO")
+
+	# posição da janela
+	position = Vector2(320, -20)
+
+
+func _process(_delta: float) -> void:
+
+	allow_crossed_wires = Global.allow_crossed_wires
+	only_cardinals = Global.only_cardinals
+
+	if visible:
+		queue_redraw()
+
+
+func reset_puzzle():
+
+	main_line.clear_points()
+
+	currently_selected = null
+	is_correct = false
+	correct_color = null
+	show_hint = false
+
+	for circle in circles:
+		circle.color = default_color
+
+	queue_redraw()
+
+
+func is_connection_valid(start: Vector2, end: Vector2) -> bool:
+
+	if not allow_crossed_wires:
+
+		for i in range(main_line.points.size() - 1):
+
+			if Geometry2D.segment_intersects_segment(
+				main_line.get_point_position(i),
+				main_line.get_point_position(i + 1),
+				start,
+				end
+			) != null and main_line.get_point_position(i + 1) != start:
+
+				return false
+
+	if only_cardinals and not (
+		start.x == end.x or start.y == end.y
+	):
+		return false
+
+	for circle in circles:
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
 
 		if circle.pos == start or circle.pos == end:
 			continue
@@ -98,6 +188,7 @@ func is_connection_valid(start: Vector2, end: Vector2) -> bool:
 	return true
 
 
+<<<<<<< HEAD
 func _input(_event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("reload"):
@@ -105,6 +196,22 @@ func _input(_event: InputEvent) -> void:
 		show_hint = !show_hint
 		queue_redraw()
 	
+=======
+func _input(event: InputEvent) -> void:
+
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+
+	# abrir/fechar dica
+	if event is InputEventKey and event.pressed:
+
+		if event.keycode == KEY_T:
+
+			show_hint = !show_hint
+			queue_redraw()
+
+	# conectar bolinhas
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
 	if Input.is_action_pressed("select"):
 
 		for circle in circles:
@@ -124,17 +231,25 @@ func _input(_event: InputEvent) -> void:
 				):
 
 					main_line.add_point(circle.pos)
+
 					currently_selected = circle
 					circle.color = Color.BLACK
 
+<<<<<<< HEAD
+=======
+					check_pattern()
+
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
 					queue_redraw()
 
 
 func blink_color():
 
 	for i in range(10):
+
 		correct_color = solved_color
 		queue_redraw()
+<<<<<<< HEAD
 
 		await get_tree().create_timer(0.2).timeout
 
@@ -155,14 +270,141 @@ func _draw():
 	# verifica solução
 	if not is_correct and main_line.points == correct_sequence.points:
 
-		is_correct = true
+=======
 
-		print("Puzzle resolvido")
+		await get_tree().create_timer(0.2).timeout
+
+		correct_color = null
+		queue_redraw()
+
+		await get_tree().create_timer(0.2).timeout
+
+func wrong_pattern():
+
+	error_message = (
+		"Padrao incorreto."
+	)
+
+	queue_redraw()
+
+	await get_tree().create_timer(
+		1.5
+	).timeout
+
+	error_message = ""
+
+	reset_puzzle()
+
+	queue_redraw()
+
+func _draw():
+
+	# fundo
+	draw_rect(
+		Rect2(Vector2.ZERO, Vector2(500, 350)),
+		Color.BLACK
+	)
+
+	# TEXTO
+	draw_string(
+		ThemeDB.fallback_font,
+		Vector2(20, 40),
+		"Se nao quiser tanto desafio, pressione T",
+		HORIZONTAL_ALIGNMENT_LEFT,
+		-1,
+		18,
+		Color.WHITE
+	)
+
+	draw_string(
+		ThemeDB.fallback_font,
+		Vector2(20, 65),
+		"Para fechar, pressione E novamente",
+		HORIZONTAL_ALIGNMENT_LEFT,
+		400,
+		18,
+		Color.WHITE
+	)
+	
+		# mensagem de erro
+	if error_message != "":
+
+		draw_string(
+			ThemeDB.fallback_font,
+			Vector2(145, 340),
+			error_message,
+			HORIZONTAL_ALIGNMENT_LEFT,
+			180,
+			14,
+			Color(1, 0.45, 0.45)
+		)
+
+	# bolinhas
+	for circle in circles:
+
+		if correct_color == null:
+
+			draw_circle(
+				circle.pos,
+				circle.radius,
+				circle.color
+			)
+
+		else:
+
+			draw_circle(
+				circle.pos,
+				circle.radius,
+				correct_color
+			)
+
+	# linhas
+	if main_line.points.size() > 1:
+
+		for i in range(main_line.points.size() - 1):
+
+			draw_line(
+				main_line.points[i],
+				main_line.points[i + 1],
+				Color.WHITE,
+				6
+			)
+
+	# senha
+	if show_hint:
+
+		draw_texture_rect(
+			answer_texture,
+			Rect2(
+				Vector2(300, 110),
+				Vector2(170, 100)
+			),
+			false
+		)
+func check_pattern():
+
+	if is_correct:
+		return
+
+	if (
+		main_line.points.size()
+		!= correct_sequence.points.size()
+	):
+		return
+
+	if (
+		main_line.points
+		== correct_sequence.points
+	):
+
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
+		is_correct = true
 
 		puzzle_completed.emit()
 
 		blink_color()
 
+<<<<<<< HEAD
 	# desenha círculos
 	for circle in circles:
 
@@ -200,3 +442,8 @@ func _draw():
 				texture,
 				Vector2(620, 50)
 			)
+=======
+	else:
+
+		wrong_pattern()
+>>>>>>> 3f58a7ed59b50ba79cebf7ba9b689ec81c95bc0e
